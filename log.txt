@@ -1,2 +1,6 @@
-6be1a20 (HEAD -> main, origin/main, origin/HEAD) Task 1.1
+
+0ea4418 (HEAD -> main, origin/main, origin/HEAD) Task 2.1
+9b05b10 Task 1.2
+31d4440 Task 1.2
+6be1a20 Task 1.1
 cbd9249 Initial commit
