@@ -18,6 +18,7 @@ public class Performance {
     }
 
     public String getPlayID() {
-        return playID; }
+        return playID;
+    }
 
 }

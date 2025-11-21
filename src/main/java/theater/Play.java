@@ -1,6 +1,7 @@
 package theater;
+
 /**
- * Class representing a play
+ * Class representing a play.
  * @null
  */
 

@@ -27,7 +27,8 @@ public class StatementPrinter {
      */
     public String statement() {
 
-        final StringBuilder result = new StringBuilder("Statement for " + invoice.getCustomer() + System.lineSeparator());
+        final StringBuilder result = new StringBuilder("Statement for " + invoice.getCustomer()
+                + System.lineSeparator());
         for (Performance p : invoice.getPerformances()) {
             result.append(String.format("  %s: %s (%s seats)%n",
                     getPlay(p).getName(),
@@ -36,7 +37,7 @@ public class StatementPrinter {
         }
 
         result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
-        result.append(String.format("You earned %s credits%n", getVolumeCredits()));
+        result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
         return result.toString();
     }
 
@@ -48,19 +49,15 @@ public class StatementPrinter {
         return totalAmount;
     }
 
-    private int getVolumeCredits() {
+    private int getTotalVolumeCredits() {
         int volumeCredits = 0;
         for (Performance p : invoice.getPerformances()) {
-            volumeCredits += getVolumeCredits(p, volumeCredits);
+            volumeCredits += getTotalVolumeCredits(p, volumeCredits);
         }
         return volumeCredits;
     }
 
-    private static String usd(int totalAmount) {
-        return NumberFormat.getCurrencyInstance(Locale.US).format(totalAmount / THIS_BASE_AMOUNT_MODIFIER_TWO);
-    }
-
-    private int getVolumeCredits(Performance performance, int volumeCredits) {
+    private int getTotalVolumeCredits(Performance performance, int volumeCredits) {
         int result = 0;
         result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
@@ -70,8 +67,12 @@ public class StatementPrinter {
         return result;
     }
 
-    private Play getPlay(Performance p) {
-        return plays.get(p.getPlayID());
+    private static String usd(int totalAmount) {
+        return NumberFormat.getCurrencyInstance(Locale.US).format(totalAmount / THIS_BASE_AMOUNT_MODIFIER_TWO);
+    }
+
+    private Play getPlay(Performance performance) {
+        return plays.get(performance.getPlayID());
     }
 
     private int getAmount(Performance performance) {
