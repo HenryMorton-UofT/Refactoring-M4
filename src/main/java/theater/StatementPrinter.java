@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * This class generates a statement for a given invoice of performances.
  */
+
 public class StatementPrinter {
     private static final int TRAGEDY_BASE_AMOUNT = 40000;
     private static final int THIS_BASE_AMOUNT = 1000;
