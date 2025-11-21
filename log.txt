@@ -1,5 +1,6 @@
 
-0ea4418 (HEAD -> main, origin/main, origin/HEAD) Task 2.1
+e5f42a7 (HEAD -> main, origin/main, origin/HEAD) Task 2.2
+0ea4418 Task 2.1
 9b05b10 Task 1.2
 31d4440 Task 1.2
 6be1a20 Task 1.1
