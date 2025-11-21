@@ -37,7 +37,7 @@ public class StatementPrinter {
         }
 
         result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
-        result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
+        result.append(String.format("You earned %s credits%n", getVolumeCredits()));
         return result.toString();
     }
 
@@ -49,15 +49,15 @@ public class StatementPrinter {
         return totalAmount;
     }
 
-    private int getTotalVolumeCredits() {
+    private int getVolumeCredits() {
         int volumeCredits = 0;
         for (Performance p : invoice.getPerformances()) {
-            volumeCredits += getTotalVolumeCredits(p, volumeCredits);
+            volumeCredits += getVolumeCredits(p, volumeCredits);
         }
         return volumeCredits;
     }
 
-    private int getTotalVolumeCredits(Performance performance, int volumeCredits) {
+    private int getVolumeCredits(Performance performance, int volumeCredits) {
         int result = 0;
         result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
