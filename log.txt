@@ -1,4 +1,6 @@
-aa54e68 (HEAD -> main, origin/main, origin/HEAD) Task 2.3
+henrymorton@Henrys-MacBook-Pro-2 Refactoring-M4 % git log --oneline
+a61edb0 (HEAD -> main, origin/main, origin/HEAD) Task 2.4
+aa54e68 Task 2.3
 e5f42a7 Task 2.2
 0ea4418 Task 2.1
 9b05b10 Task 1.2
