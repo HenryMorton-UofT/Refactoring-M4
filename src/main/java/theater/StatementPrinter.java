@@ -3,7 +3,6 @@ package theater;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
-
 /**
  * This class generates a statement for a given invoice of performances.
  */
@@ -19,14 +18,13 @@ public class StatementPrinter {
         this.invoice = invoice;
         this.plays = plays;
     }
-
     /**
      * Returns a formatted statement of the invoice associated with this printer.
      * @return the formatted statement
      * @throws RuntimeException if one of the play types is not known
      */
-    public String statement() {
 
+    public String statement() {
         final StringBuilder result = new StringBuilder("Statement for " + invoice.getCustomer()
                 + System.lineSeparator());
         for (Performance p : invoice.getPerformances()) {
@@ -35,9 +33,8 @@ public class StatementPrinter {
                     usd(getAmount(p)),
                     p.getAudience()));
         }
-
         result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
-        result.append(String.format("You earned %s credits%n", getVolumeCredits()));
+        result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
         return result.toString();
     }
 
@@ -49,15 +46,15 @@ public class StatementPrinter {
         return totalAmount;
     }
 
-    private int getVolumeCredits() {
+    private int getTotalVolumeCredits() {
         int volumeCredits = 0;
         for (Performance p : invoice.getPerformances()) {
-            volumeCredits += getVolumeCredits(p, volumeCredits);
+            volumeCredits += getVolumeCredits(p);
         }
         return volumeCredits;
     }
 
-    private int getVolumeCredits(Performance performance, int volumeCredits) {
+    private int getVolumeCredits(Performance performance) {
         int result = 0;
         result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
